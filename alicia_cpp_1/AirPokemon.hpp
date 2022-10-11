@@ -1,0 +1,7 @@
+
+namespace PokemonLibrary {
+
+    class AirPokemon {
+        
+    }
+}
