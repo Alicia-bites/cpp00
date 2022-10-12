@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:31:27 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/12 13:42:25 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/12 16:57:08 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Contact {
 		std::string	getPhoneNumberName();
 		std::string	getDarkestSecret();
 
-	private:
+	// private:
 		std::string	_firstName;
 		std::string	_lastName;
 		std::string	_nickName;
@@ -42,17 +42,16 @@ class Contact {
 class PhoneBook {
 	public:
 		PhoneBook();
-		PhoneBook(Contact Contacts, int nextPos);
+		// PhoneBook(Contact Contacts, int nextPos);
 		PhoneBook(const PhoneBook& p);
 		~PhoneBook();
 		
-		int	add_contact();
-		int	replace_contact(Contact newContact);
-		int	search_contact();
-		int	exit();
+		void	add_contact(Contact c);
+		int		search_contact(std::string lostName);
+		int		exit();
 	
 	private:
-		Contact	_Contacts[8];
+		Contact	_contacts[8];
 		int 	_nextPos;
 };
 
