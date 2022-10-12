@@ -6,11 +6,10 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:51:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/11 17:41:57 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:23:45 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "phoneBook.hpp"
 
 // Default Constructor
@@ -41,26 +40,14 @@ Contact::Contact(const Contact& other) {
 	_darkestSecret = other._darkestSecret;
 }
 
-//Destructor
-// Contact::~Contact(){
-// }
+// Destructor
+Contact::~Contact(){
+}
 
-std::string Contact getFirstName() {
+std::string Contact::getFirstName() {
+	std::string firstName;
+	std::cin >> firstName;
+	_firstName = firstName;
 	return _firstName;
 }
 
-std::string Contact getLastName() {
-	return _lastName;
-}
-
-std::string Contact getNickName() {
-	return _nickName;
-}
-
-std::string Contact getPhoneNumberName() {
-	return _phoneNumber;
-}
-
-std::string Contact getDarkestSecret() {
-	return _darkestSecret;
-}
