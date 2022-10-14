@@ -26,7 +26,12 @@
 *.a
 *.lib
 
+# vscode stuff
+.vscode
+
 # Executables
 *.exe
 *.out
 *.app
+megaphone
+phoneBook
