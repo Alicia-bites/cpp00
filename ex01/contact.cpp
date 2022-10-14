@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:51:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/12 13:23:45 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/14 09:07:22 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ Contact::Contact(std::string firstName, std::string lastName,
 	_darkestSecret = darkestSecret;
 }
 
+//another constructor
+Contact::Contact(std::ostream &out, std::istream &in) {
+	out << "Please enter first name :" << std::endl;
+	in >> _firstName;
+	out << "Please enter last name :" << std::endl;
+	in >> _lastName;
+	out << "Please enter nickname :" << std::endl;
+	in >> _nickName;
+	out << "Please enter phone number :" << std::endl;
+	in >> _phoneNumber;
+	out << "Please enter darkest secret :" << std::endl;
+	in >> _darkestSecret;
+}
+
 // Copy constructor
 Contact::Contact(const Contact& other) {
 	_firstName = other._firstName;
@@ -44,10 +58,20 @@ Contact::Contact(const Contact& other) {
 Contact::~Contact(){
 }
 
+//getters
 std::string Contact::getFirstName() {
-	std::string firstName;
-	std::cin >> firstName;
-	_firstName = firstName;
 	return _firstName;
 }
 
+std::string Contact::getLastName() {
+	return _lastName;
+}
+std::string Contact::getNickName() {
+	return _nickName;
+}
+std::string Contact::getPhoneNumber() {
+	return _phoneNumber;
+}
+std::string Contact::getDarkestSecret() {
+	return _darkestSecret;
+}
