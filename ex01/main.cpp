@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:31:16 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/14 09:04:27 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:12:08 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	main()
 		}
 		else if (command == "EXIT")
 			return (0);
-		else 
-			std::cout << "Unknown command. Please try again" << std::endl;
 	}
 	return (0);
 }
