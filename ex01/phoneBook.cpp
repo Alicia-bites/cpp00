@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:05:21 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/14 09:13:23 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/14 14:09:47 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 PhoneBook::PhoneBook(){
 	_nextPos = 0;
 }
-
-// constructor
-// PhoneBook::PhoneBook(Contact Contacts, int nextPos){
-// 	_nextPos = nextPos;
-// 	_cntacts = Contact[8];
-// }
 
 //copy constructor
 PhoneBook::PhoneBook(const PhoneBook& other){
@@ -36,43 +30,67 @@ PhoneBook::~PhoneBook(){
 	
 }
 
-// void	PhoneBook::parse_add(Contact& newContact) {
-// 	std::cout << "Please enter first name :" << std::endl;
-// 	std::cin >> newContact._firstName;
-// 	std::cout << "Please enter last name :" << std::endl;
-// 	std::cin >> newContact._lastName;
-// 	std::cout << "Please enter nickname :" << std::endl;
-// 	std::cin >> newContact._nickName;
-// 	std::cout << "Please enter phone number :" << std::endl;
-// 	std::cin >> newContact._phoneNumber;
-// 	std::cout << "Please enter darkest secret :" << std::endl;
-// 	std::cin >> newContact._darkestSecret;
-// }
-
 void	PhoneBook::add_contact(Contact c)
 {
 	_contacts[_nextPos] = c;
 	_nextPos = (_nextPos + 1) % 8;
 }
 
-// int	format_index(int index)
-// {
-// 	std::string index_string;
-// 	if (index < 10)
-// 		index_string = "         " + index;
-// 		std::cout << 
-// }
+std::string	format_index(int index)
+{
+	int n = 0;
+	
+	std::stringstream ss;
+	ss << index;
+	std::string index_string = ss.str();
+	std::string spaces_before = ""; //0 space
+	std::string one_space = " "; //1 space
+	if (index < 0)
+		std::cerr << "Error! Not a valid index." << std::endl;
+	else if (index == 0)
+		n = 1;
+	else
+	{
+		while (index > 0)
+		{
+			index /= 10;
+			n++;
+		}
+	}
+	while ((10 - n) > 0)
+	{
+		spaces_before += one_space;
+		n++;		
+	}
+	index_string = spaces_before + index_string;
+	return index_string;
+}
+
+std::string format_string(std::string s)
+{
+	std::string spaces_before = "";
+	std::string one_space = " ";
+	int n = s.length();
+	while ((10 - n++) > 0)
+		spaces_before += one_space;
+	s = spaces_before + s;
+	return s;
+}
 
 void	PhoneBook::display_contact_list()
 {
+	std::string	index;
+	std::string firstName;
+	std::string lastName;
+	std::string nickName;
 	for (int i = 0; i < 8; i++)
 	{
-		// i = format_index(i);
-		// _contacts[i]._firstName = format_string(_contacts[i]._firstName);
-		// _contacts[i]._lastName = format_string(_contacts[i]._lastName);
-		// _contacts[i]._nickName = format_string(_contacts[i]._nickName);
-		std::cout << i << _contacts[i].getFirstName()
-			<< _contacts[i].getLastName() << _contacts[i].getNickName() << std::endl;
+		index = format_index(i);
+		firstName = format_string(_contacts[i].getFirstName());
+		lastName = format_string(_contacts[i].getLastName());
+		nickName = format_string(_contacts[i].getNickName());
+		std::cout << index << firstName
+			<< lastName << nickName << std::endl;
 	}
 }
 
