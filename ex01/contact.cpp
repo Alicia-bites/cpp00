@@ -6,24 +6,25 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:51:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/14 09:07:22 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:41:56 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phoneBook.hpp"
 
 // Default Constructor
-Contact::Contact() {
-	_firstName = "default";
-	_lastName = "default"; 
-	_nickName = "default";
-	_phoneNumber = "default"; 
-	_darkestSecret = "default";
-}
+Contact::Contact()
+: _firstName("default") // <-- ca appelle le copy-constructor de string
+, _lastName("default")
+, _nickName("default")
+, _phoneNumber("default")
+, _darkestSecret("default")
+{}
 
 // Constructor
 Contact::Contact(std::string firstName, std::string lastName,
-	std::string nickName, std::string phoneNumber, std::string darkestSecret){
+	std::string nickName, std::string phoneNumber, std::string darkestSecret)
+{
 	_firstName = firstName;
 	_lastName = lastName; 
 	_nickName = nickName;
@@ -32,7 +33,8 @@ Contact::Contact(std::string firstName, std::string lastName,
 }
 
 //another constructor
-Contact::Contact(std::ostream &out, std::istream &in) {
+Contact::Contact(std::ostream &out, std::istream &in)
+{
 	out << "Please enter first name :" << std::endl;
 	in >> _firstName;
 	out << "Please enter last name :" << std::endl;
@@ -46,7 +48,8 @@ Contact::Contact(std::ostream &out, std::istream &in) {
 }
 
 // Copy constructor
-Contact::Contact(const Contact& other) {
+Contact::Contact(const Contact& other)
+{
 	_firstName = other._firstName;
 	_lastName = other._lastName;
 	_nickName = other._nickName;
@@ -55,23 +58,62 @@ Contact::Contact(const Contact& other) {
 }
 
 // Destructor
-Contact::~Contact(){
+Contact::~Contact()
+{}
+
+std::string	format_index(int index)
+{
+	int n = 0;
+	
+	std::stringstream ss;
+	ss << index;
+	std::string index_string = ss.str();
+	std::string spaces_before = ""; //0 space
+	std::string one_space = " "; //1 space
+	if (index < 0)
+		std::cerr << "Error! Not a valid index." << std::endl;
+	else if (index == 0)
+		n = 1;
+	else
+	{
+		while (index > 0)
+		{
+			index /= 10;
+			n++;
+		}
+	}
+	while ((10 - n) > 0)
+	{
+		spaces_before += one_space;
+		n++;		
+	}
+	index_string = spaces_before + index_string;
+	return index_string;
 }
 
-//getters
-std::string Contact::getFirstName() {
-	return _firstName;
+std::string format_string(std::string s)
+{
+	std::string spaces_before = "";
+	std::string one_space = " ";
+	int n = s.length();
+	while ((10 - n++) > 0)
+		spaces_before += one_space;
+	s = spaces_before + s;
+	return s;
 }
 
-std::string Contact::getLastName() {
-	return _lastName;
+ void	Contact::display_contact_line(int i) const
+{
+	std::cout << format_index(i) << format_string(_firstName)
+		<< format_string(_lastName) << format_string(_nickName) << std::endl; 
 }
-std::string Contact::getNickName() {
-	return _nickName;
+
+void	Contact::display_contact_info() const
+{	
+	std::cout << _firstName << std::endl;
+	std::cout << _lastName << std::endl;
+	std::cout << _nickName << std::endl;
+	std::cout << _phoneNumber << std::endl;
+	std::cout << _darkestSecret << std::endl;
 }
-std::string Contact::getPhoneNumber() {
-	return _phoneNumber;
-}
-std::string Contact::getDarkestSecret() {
-	return _darkestSecret;
-}
+

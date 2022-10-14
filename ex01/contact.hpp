@@ -6,11 +6,17 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:15:28 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/14 14:15:47 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:44:57 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phoneBook.hpp"
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
+
+#include "contact.hpp"
+
+std::string	format_index(int index);
+std::string format_string(std::string s);
 
 class Contact {
 	public:
@@ -21,11 +27,8 @@ class Contact {
 		Contact(const Contact& c);
 		~Contact();
 
-		std::string	getFirstName();
-		std::string	getLastName();
-		std::string	getNickName();
-		std::string	getPhoneNumber();
-		std::string	getDarkestSecret();
+		void	display_contact_line(int i) const;
+		void	display_contact_info() const;
 
 	private:
 		std::string	_firstName;
@@ -34,3 +37,5 @@ class Contact {
 		std::string	_phoneNumber;
 		std::string	_darkestSecret;
 };
+
+#endif
