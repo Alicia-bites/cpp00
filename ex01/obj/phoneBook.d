@@ -1,1 +1,1 @@
-obj/phoneBook.o: phoneBook.cpp phoneBook.hpp contact.hpp
+obj/phoneBook.o: phoneBook.cpp phoneBook.hpp contact.hpp colors.hpp

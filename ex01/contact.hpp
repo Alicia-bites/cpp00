@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:15:28 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/14 16:44:57 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:46:56 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ class Contact {
 		void	display_contact_info() const;
 
 	private:
-		std::string	_firstName;
-		std::string	_lastName;
-		std::string	_nickName;
-		std::string	_phoneNumber;
-		std::string	_darkestSecret;
+		std::string	firstName_;
+		std::string	lastName_;
+		std::string	nickName_;
+		std::string	phoneNumber_;
+		std::string	darkestSecret_;
 };
 
 #endif

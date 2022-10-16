@@ -6,23 +6,24 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:05:21 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/14 16:43:02 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:29:55 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phoneBook.hpp"
 
 // default constructor
-PhoneBook::PhoneBook(){
-	_nextPos = 0;
-}
+PhoneBook::PhoneBook()
+: nextPos_(0)
+{}
 
 //copy constructor
 PhoneBook::PhoneBook(const PhoneBook& other)
 {
-	_nextPos = other._nextPos;
-	for (int i = 0; i < 8; i++) {
-		_contacts[i] = other._contacts[i];
+	nextPos_ = other.nextPos_;
+	for (int i = 0; i < 8; i++)
+	{
+		contacts_[i] = other.contacts_[i];
 	}
 }
 
@@ -32,15 +33,18 @@ PhoneBook::~PhoneBook()
 
 void	PhoneBook::add_contact(const Contact& c)
 {
-	_contacts[_nextPos] = c;
-	_nextPos = (_nextPos + 1) % 8;
+	contacts_[nextPos_] = c;
+	nextPos_ = (nextPos_ + 1) % 8;
 }
 
 void	PhoneBook::display_contact_list() const
 {
+	// if (nextPos_ == 0)
+	// 	std::cout << MAGENTA2 << "PhoneBook is empty." << RESET
+	// 		<< std::endl;
 	for (int i = 0; i < 8; i++)
 	{
-		_contacts[i].display_contact_line(i);
+		contacts_[i].display_contact_line(i);
 	}
 }
 
@@ -48,12 +52,15 @@ int		PhoneBook::parse_search() const
 {
 	int index;
 	
-	std::cout << "Please enter contact index" << std::endl;
+	if (nextPos_ == 0)
+		return (-1);
+	std::cout << DEEPPINK3 << "Please enter contact index :" << std::endl;
 	std::cin >> index;
+	std::cout << "index = " << index << std::endl;
 	while (index < 0 || index > 7)
 	{
 		std::cout << "Index not found. Index must be between 0 and 7 included."
-			<< std::endl;
+			<< std::endl << "Please enter contact index again :";
 		std::cin >> index;
 	}
 	return (index);
@@ -61,5 +68,12 @@ int		PhoneBook::parse_search() const
 
 void	PhoneBook::search_contact(int index) const
 {
-	_contacts[index].display_contact_info();	
+	if (index == -1)
+		return ;
+	contacts_[index].display_contact_info();	
+}
+
+int		PhoneBook::get_next_pos() const
+{
+	return nextPos_;
 }

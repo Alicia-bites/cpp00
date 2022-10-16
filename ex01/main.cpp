@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 11:31:16 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/14 14:12:08 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:26:49 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ int	main()
 	
 	while (1)
 	{
-		std::cout << "Enter command : " << std::endl;
+		std::cout << DEEPPINK3 << "Enter command : " << RESET << std::endl;
 		std::cin >> command;
 		if (command == "ADD")
 		{
 			Contact newContact(std::cout, std::cin);
 			pb.add_contact(newContact);
+			std::cout << DEEPPINK3 << "Contact registered. " << 8 - pb.get_next_pos()
+				<< " entries left!" << RESET << std::endl;
 		}
 		else if (command == "SEARCH")
 		{

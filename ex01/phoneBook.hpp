@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:31:27 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/14 16:40:46 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/16 17:15:09 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <iostream>     // std::cout
 #include <sstream>      // std::stringstream
 #include "contact.hpp"
+#include "colors.hpp"
 
 
 
@@ -30,10 +31,10 @@ class PhoneBook {
 		void		display_contact_list() const;
 		int			parse_search() const;
 		void		search_contact(int index) const;
-	
+		int			get_next_pos() const; 
 	private:
-		Contact	_contacts[8];
-		int 	_nextPos;
+		Contact	contacts_[8];
+		int 	nextPos_;
 };
 
 #endif

@@ -1,0 +1,1 @@
+g++ preview_colors.cpp && ./a.out
