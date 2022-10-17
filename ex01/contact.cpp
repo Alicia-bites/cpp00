@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:51:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/16 17:28:01 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:32:10 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,26 @@ Contact::Contact(std::string firstName, std::string lastName,
 Contact::Contact(std::ostream &out, std::istream &in)
 {
 	out << MEDIUMPURPLE << "Please enter first name :" RESET << std::endl;
-	in >> firstName_;
+	std::getline(in, firstName_);
+	exit_if_EOF_detected();
+	handle_empty_field(firstName_);
 	out << MEDIUMPURPLE1 << "Please enter last name :" RESET << std::endl;
-	in >> lastName_;
+	std::getline(in, lastName_);
+	exit_if_EOF_detected();
+	handle_empty_field(lastName_);
 	out << MEDIUMPURPLE2 << "Please enter nickname :" RESET << std::endl;
-	in >> nickName_;
+	std::getline(in, nickName_);
+	exit_if_EOF_detected();
+	handle_empty_field(nickName_);
 	out << MEDIUMPURPLE3 << "Please enter phone number :" RESET << std::endl;
-	in >> phoneNumber_;
+	std::getline(in, phoneNumber_);
+	exit_if_EOF_detected();
+	handle_empty_field(phoneNumber_);
 	out << MEDIUMPURPLE5 << "Please enter darkest secret :" RESET
 		<< std::endl;
-	in >> darkestSecret_;
+	std::getline(in, darkestSecret_);
+	exit_if_EOF_detected();
+	handle_empty_field(darkestSecret_);
 }
 
 // Copy constructor
@@ -59,50 +69,6 @@ Contact::Contact(const Contact& other)
 // Destructor
 Contact::~Contact()
 {}
-
-std::string	format_index(int index)
-{
-	int n = 0;
-	
-	std::stringstream ss;
-	ss << index;
-	std::string index_string = ss.str();
-	std::string spaces_before = ""; //0 space
-	std::string one_space = " "; //1 space
-	if (index < 0)
-		std::cerr << ORANGERED1 << "Error! Not a valid index." << RESET
-			<< std::endl;
-	else if (index == 0)
-		n = 1;
-	else
-	{
-		while (index > 0)
-		{
-			index /= 10;
-			n++;
-		}
-	}
-	while ((10 - n) > 0)
-	{
-		spaces_before += one_space;
-		n++;		
-	}
-	index_string = spaces_before + index_string;
-	return index_string;
-}
-
-std::string format_string(std::string s)
-{
-	std::string spaces_before = "";
-	std::string one_space = " ";
-	int n = s.length();
-	if (n > 10)
-		s.resize(10);
-	while ((10 - n++) > 0)
-		spaces_before += one_space;
-	s = spaces_before + s;
-	return s;
-}
 
  void	Contact::display_contact_line(int i) const
 {
@@ -138,4 +104,3 @@ void	Contact::display_contact_info() const
 	std::cout << DEEPSKYBLUE4 << phoneNumber_ << RESET << std::endl;
 	std::cout << DEEPSKYBLUE5 << darkestSecret_ << RESET << std::endl;
 }
-

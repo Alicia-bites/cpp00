@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 14:15:28 by amarchan          #+#    #+#             */
-/*   Updated: 2022/10/14 18:46:56 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:27:26 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 std::string	format_index(int index);
 std::string format_string(std::string s);
+void		handle_empty_field(std::string s);
 
 class Contact {
 	public:
