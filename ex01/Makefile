@@ -14,6 +14,11 @@ RM				:=	rm -rf
 
 SRCS			:=	phoneBook.cpp\
 					contact.cpp\
+					is_number.cpp\
+					exit_if_EOF_detected.cpp\
+					format_string.cpp\
+					format_index.cpp\
+					handle_empty_field.cpp\
 					main.cpp\
 
 OBJS			:=	$(addprefix $(OPATH)/, $(SRCS:.cpp=.o))
